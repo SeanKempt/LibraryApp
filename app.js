@@ -1,3 +1,21 @@
+let modal = document.getElementById("bookmodal");
+let bookbtn = document.getElementById("new-book");
+let close = document.getElementsByClassName("close")[0];
+
+bookbtn.addEventListener("click", () => {
+  modal.style.display = "block";
+});
+
+close.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", (event) => {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+});
+
 let library = [];
 
 class Book {
@@ -6,9 +24,10 @@ class Book {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.showInfo = function () {
-      return `${title} by ${author}, ${pages} pages, ${read}.`;
-    };
+  }
+
+  showInfo() {
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
   }
 }
 
