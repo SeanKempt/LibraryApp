@@ -58,8 +58,15 @@ addBookBtn.addEventListener("click", function () {
   addBookBtn.form.reset();
 });
 
+// Write a function that loops through the array and displays each book on the page.
+function addBookCard() {
+  for (let i = 0; i < library.length; i++) {
+    createBookCard(library[i]);
+  }
+}
+
 //function that creates a card on the page based off an objects properties within the array
-function createBookCard() {
+function createBookCard(book) {
   const mainContainer = document.getElementById("main-container");
   const bookCard = document.createElement("div");
   const title = document.createElement("p");
@@ -69,15 +76,8 @@ function createBookCard() {
   mainContainer.appendChild(bookCard);
   bookCard.append(title, author, pages, read);
   bookCard.classList.add("book-card");
-  title.textContent = this.title;
-  author.textContent = this.author;
-  pages.textContent = this.pages;
-  read.textContent = this.read;
-}
-
-// Write a function that loops through the array and displays each book on the page.
-function addBookCard() {
-  for (let i = 0; i < library.length; i++) {
-    library[i].createBookCard();
-  }
+  title.textContent = book.title;
+  author.textContent = book.author;
+  pages.textContent = book.pages;
+  read.textContent = book.read;
 }
