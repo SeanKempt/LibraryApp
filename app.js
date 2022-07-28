@@ -43,20 +43,22 @@ class App {
     );
   }
 
+  // Loops through the array and runs createBookCard function on each object(book)
+  //If book card exists already for book object in the array skip that object and move to next object
+  addBookCard() {
+    for (let i = 0; i < library.length; i++) {
+      this.createBookCard(library[i]);
+    }
+  }
+
   _newBook() {
     this.addBookToLibrary();
     modal.style.display = "none";
     addBookBtn.form.reset();
+    this.addBookCard();
   }
 
-  // Write a function that loops through the array and displays each book on the page.
-  addBookCard() {
-    for (let i = 0; i < library.length; i++) {
-      createBookCard(library[i]);
-    }
-  }
-
-  //function that creates a card on the page based off an objects properties within the array
+  //function that creates elements and appends the elements to parent elements to create the card for the book objects
   createBookCard(book) {
     const mainContainer = document.getElementById("main-container");
     const bookCard = document.createElement("div");
@@ -71,10 +73,12 @@ class App {
     author.textContent = book.author;
     pages.textContent = book.pages;
     read.textContent = book.read;
+    book.#cardCreated = true;
   }
 }
 
 class Book {
+  #cardCreated = false;
   constructor(title, author, pages, read) {
     this.title = title;
     this.author = author;
