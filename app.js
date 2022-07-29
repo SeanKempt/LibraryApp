@@ -47,7 +47,9 @@ class App {
   //If book card exists already for book object in the array skip that object and move to next object
   addBookCard() {
     for (let i = 0; i < library.length; i++) {
-      this.createBookCard(library[i]);
+      if (!library[i].cardCreated) {
+        this.createBookCard(library[i]);
+      }
     }
   }
 
@@ -73,17 +75,17 @@ class App {
     author.textContent = book.author;
     pages.textContent = book.pages;
     read.textContent = book.read;
-    book.#cardCreated = true;
+    book.cardCreated = true;
   }
 }
 
 class Book {
-  #cardCreated = false;
   constructor(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.cardCreated = false;
   }
 }
 
