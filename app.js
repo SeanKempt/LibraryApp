@@ -7,6 +7,7 @@ let title = document.getElementById("title");
 let author = document.getElementById("author");
 let pages = document.getElementById("pages");
 let read = document.getElementById("read");
+const btn = document.createElement("button");
 
 bookbtn.addEventListener("click", () => {
   modal.style.display = "block";
@@ -22,14 +23,7 @@ window.addEventListener("click", (event) => {
   }
 });
 
-let library = [
-  {
-    title: "Harry Potter The Chamber of Secrets",
-    author: "J.K. Rowling",
-    pages: 251,
-    read: "yes",
-  },
-];
+let library = [];
 
 class App {
   constructor() {
@@ -69,13 +63,20 @@ class App {
     const pages = document.createElement("p");
     const read = document.createElement("p");
     mainContainer.appendChild(bookCard);
-    bookCard.append(title, author, pages, read);
+    bookCard.append(title, author, pages, read, btn);
     bookCard.classList.add("book-card");
     title.textContent = book.title;
     author.textContent = book.author;
     pages.textContent = book.pages;
     read.textContent = book.read;
     book.cardCreated = true;
+    btn.textContent = "Delete";
+    for (let i = 0; i < library.length; i++) {
+      bookCard.dataset.bookIndex = i;
+    }
+    btn.addEventListener("click", function () {
+      bookCard.remove();
+    });
   }
 }
 
