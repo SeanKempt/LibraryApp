@@ -1,13 +1,22 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
 h1 {
     margin: 0;
 }
 
-
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 8% 835px 3%;
+}
 
 .form-container {
     width: 250px;
     clear: both;
-    margin-left: 25%;
+    margin-left: 20%;
+    padding-bottom: 5%;
 }
 
 .form-container input {
@@ -16,9 +25,37 @@ h1 {
 }
 
 .book-card {
-    width: 250px;
-    background-color: azure;
-    border: 2px solid black;
+    width: 300px;
+    height: 200px;
+    padding: 5px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    vertical-align: top;
+    border: 0.1px solid grey;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    justify-content: center;
+}
+
+.book-card h3 {
+    font-size: 1em;
+    margin: 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+.book-card p {
+    text-align: center;
+    margin: 0;
+    margin-top: 1vh;
+}
+
+.book-card button {
+    margin: 0.5vh;
+    width: 60%;
+    align-self: center;
+    border: 1px solid grey;
 }
 
 .modal {
@@ -38,7 +75,9 @@ h1 {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 35%;
+    width: 450px;
+    border-radius: 30px;
+    
 }
 
 .close {
@@ -50,34 +89,62 @@ h1 {
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: red;
   text-decoration: none;
   cursor: pointer;
 }
 
 #header-container {
     display: flex;
-    background-color: blue;
+    background-color: #6f42c1;
     padding: 20px;
     color: white;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
 #main-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: repeat(auto-fill, minmax(250px, 250px));
+    gap: 30px;
     justify-items: center;
-    background-color: red;
+    background-color: #fff;
     padding: 20px;
+    grid-row: 2 / 3;
 }
 
 #footer-container {
-    background-color: aquamarine;
+    background-color: #6f42c1;
+    color: #fff;
+    text-align: center;
+    padding-top: 5px;
+    overflow: none;
 }
 
 #new-book {
     margin-left: auto;
     margin-right: 20px;
     width: 10%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
+#read-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#notread-button {
+    color: white;
+    background-color: #f44336;
+}
+
+#greeting {
+    font-size: xx-large;
+    text-align: center;
+    position: absolute;
+}
+
+#book-submit {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}

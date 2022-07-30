@@ -8,13 +8,17 @@
     <title>Library App</title>
     <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c9a7594955.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="wrapper">
         <header id="header-container">
             <h1>Library App</h1>
-            <button id="new-book">Add Book</button>
+            <button type="button" id="new-book">Add Book</button>
         </header>
         <div class="modal" id="bookmodal">
             <div class="modal-content">
@@ -36,8 +40,8 @@
                         <p>
                             <label for="read">Have Read:</label>
                             <select name="read" id="read">
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="Read">Read</option>
+                                <option value="Not Read">Not Read</option>
                             </select>
                         </p>
                         <button type="button" id="book-submit">Submit</button>
@@ -46,23 +50,9 @@
             </div>
         </div>
         <main id="main-container">
-            <div class="book-card">
-                <p class="title">The Hobbit</p>
-                <p class="author">J.R.R. Tolkien</p>
-                <p class="pages">384</p>
-            </div>
-            <div class="book-card">
-                <p class="title">To Kill a Mocking Bird</p>
-                <p class="author">Harper Lee</p>
-                <p class="pages">342</p>
-            </div>
-            <div class="book-card">
-                <p>Harry Potter: The Chamber of Secrets</p>
-                <p>J.K. Rowling</p>
-                <p>251</p>
-            </div>
+            <p id="greeting">Welcome to Library App! Start by adding a book.</p>
         </main>
-        <footer id="footer-container">made by Sean Kempt</footer>
+        <footer id="footer-container">Created by Sean Kempt <i class="fa-brands fa-lg fa-github"></i></footer>
     </div>
     <script src="app.js"></script>
 </body>

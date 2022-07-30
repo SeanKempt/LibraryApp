@@ -1,13 +1,11 @@
 let modal = document.getElementById("bookmodal");
 let bookbtn = document.getElementById("new-book");
 let close = document.getElementsByClassName("close")[0];
-
 let addBookBtn = document.getElementById("book-submit");
 let title = document.getElementById("title");
 let author = document.getElementById("author");
 let pages = document.getElementById("pages");
 let read = document.getElementById("read");
-const btn = document.createElement("button");
 
 bookbtn.addEventListener("click", () => {
   modal.style.display = "block";
@@ -47,6 +45,7 @@ class App {
     }
   }
 
+  //pushes user submitted book to array and sets the modal to no longer display, resets the form values and runs addBookCard() method which creates the book cards for the objects in array.
   _newBook() {
     this.addBookToLibrary();
     modal.style.display = "none";
@@ -54,29 +53,62 @@ class App {
     this.addBookCard();
   }
 
-  //function that creates elements and appends the elements to parent elements to create the card for the book objects
+  //function that creates book card elements and appends the elements to the mainContainer element for the provided book argument.
   createBookCard(book) {
+    const greeting = document.getElementById("greeting");
     const mainContainer = document.getElementById("main-container");
     const bookCard = document.createElement("div");
-    const title = document.createElement("p");
+    const title = document.createElement("h3");
     const author = document.createElement("p");
     const pages = document.createElement("p");
     const read = document.createElement("p");
+    const btn = document.createElement("button");
+    const readBtn = document.createElement("button");
+    if (mainContainer.querySelector("#greeting") !== null) {
+      mainContainer.removeChild(greeting);
+    }
     mainContainer.appendChild(bookCard);
-    bookCard.append(title, author, pages, read, btn);
+    bookCard.append(title, author, pages, readBtn, btn);
     bookCard.classList.add("book-card");
+    readBtn.classList.add("statusButton");
+    //Set id value of the read status button to read/unread depending on user submission
+    book.read === "Read"
+      ? readBtn.setAttribute("id", "read-button")
+      : readBtn.setAttribute("id", "notread-button");
     title.textContent = book.title;
-    author.textContent = book.author;
-    pages.textContent = book.pages;
+    author.textContent = `By: ${book.author}`;
+    pages.textContent = `Number of Pages: ${book.pages}`;
     read.textContent = book.read;
     book.cardCreated = true;
     btn.textContent = "Delete";
-    for (let i = 0; i < library.length; i++) {
-      bookCard.dataset.bookIndex = i;
-    }
-    btn.addEventListener("click", function () {
+    readBtn.textContent = book.read;
+    btn.addEventListener("click", () => {
       bookCard.remove();
+      this._addGreeting();
     });
+    //Change status of read property and set style class according to property value.
+    readBtn.addEventListener("click", () => {
+      if (readBtn.textContent === "Read") {
+        readBtn.textContent = "Not Read";
+        book.read = "Not Read";
+        readBtn.setAttribute("id", "notread-button");
+      } else {
+        readBtn.textContent = "Read";
+        book.read = "Read";
+        readBtn.setAttribute("id", "read-button");
+      }
+    });
+  }
+
+  //Create greeting element and set its id to greeting, then check if mainContainer has any children. If it doesn't add the greeting element to mainContainer.
+  _addGreeting() {
+    const mainContainer = document.getElementById("main-container");
+    const greeting = document.createElement("p");
+    greeting.setAttribute("id", "greeting");
+    greeting.textContent = "Welcome to Library App! Start by adding a book.";
+    if (mainContainer.children.length === 0) {
+      mainContainer.appendChild(greeting);
+    }
   }
 }
 
@@ -92,10 +124,7 @@ class Book {
 
 const app = new App();
 
-//example for adding event handler/listener to classes in OOP for JavaScript
-//You have to bind This because this within an event handler is going to point to the HTML element and not the object.
-//Event listener Should be declared within the constructor function of a class because the constructor area/scope/context is what loads when a new object is created.
-// form.addEventListener("submit", this.function.bind(this));
-
-//notes
-//might need to move the createbookcard and the add book card to the Book Class
+//To set unique Id to each object in the array when its created. If needed this would be added to createBookCard method
+// for (let i = 0; i < library.length; i++) {
+//   bookCard.dataset.bookIndex = i;
+// }
